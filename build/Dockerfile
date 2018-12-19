@@ -21,4 +21,6 @@ RUN composer global require phpcompatibility/php-compatibility \
     && phpcs --config-set installed_paths $COMPOSER_HOME/vendor/phpcompatibility/php-compatibility \
     && composer global clear-cache
 
+RUN echo "memory_limit=-1" > /usr/local/etc/php/conf.d/zzz.ini
+
 ENTRYPOINT ["/usr/local/bin/phpcs", "--standard=PHPCompatibility"]
