@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  image:
+    image: tophfr/phpcompatibility
+    build:
+      context: build
+    network_mode: host
