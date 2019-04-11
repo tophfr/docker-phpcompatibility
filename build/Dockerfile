@@ -2,7 +2,7 @@ FROM php:7.3-alpine
 
 MAINTAINER toph <toph@toph.fr>
 
-ENV COMPOSER_VERSION=1.8.0
+ENV COMPOSER_VERSION=1.8.5
 RUN export COMPOSER_HOME=/tmp/composer \
     && cd /usr/local/bin \
     && EXPECTED_SIGNATURE=$(curl -sSL https://composer.github.io/installer.sig) \
@@ -14,12 +14,13 @@ RUN export COMPOSER_HOME=/tmp/composer \
     && ln -s composer.phar composer \
     && rm -Rf $COMPOSER_HOME
 
+ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /usr/local/lib/composer
 ENV COMPOSER_BIN_DIR /usr/local/bin
 
-RUN composer global require phpcompatibility/php-compatibility \
+RUN composer global require -n phpcompatibility/php-compatibility \
     && phpcs --config-set installed_paths $COMPOSER_HOME/vendor/phpcompatibility/php-compatibility \
-    && composer global clear-cache
+    && composer global clear-cache -n
 
 RUN echo "memory_limit=-1" > /usr/local/etc/php/conf.d/zzz.ini
 
