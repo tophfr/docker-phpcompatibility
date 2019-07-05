@@ -2,7 +2,7 @@ FROM php:7.3-alpine
 
 MAINTAINER toph <toph@toph.fr>
 
-ENV COMPOSER_VERSION=1.8.5
+ENV COMPOSER_VERSION=1.8.6
 RUN export COMPOSER_HOME=/tmp/composer \
     && cd /usr/local/bin \
     && EXPECTED_SIGNATURE=$(curl -sSL https://composer.github.io/installer.sig) \
