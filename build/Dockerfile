@@ -2,7 +2,7 @@ FROM php:7.4-alpine
 
 MAINTAINER toph <toph@toph.fr>
 
-ENV COMPOSER_VERSION=1.9.1
+ENV COMPOSER_VERSION=1.10.8
 RUN export COMPOSER_HOME=/tmp/composer \
     && cd /usr/local/bin \
     && EXPECTED_SIGNATURE=$(curl -sSL https://composer.github.io/installer.sig) \
@@ -18,7 +18,8 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /usr/local/lib/composer
 ENV COMPOSER_BIN_DIR /usr/local/bin
 
-RUN composer global require -n phpcompatibility/php-compatibility \
+RUN composer global init -s stable -q \
+    && composer global require -n phpcompatibility/php-compatibility \
     && phpcs --config-set installed_paths $COMPOSER_HOME/vendor/phpcompatibility/php-compatibility \
     && composer global clear-cache -n
 
