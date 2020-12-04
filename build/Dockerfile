@@ -1,8 +1,8 @@
-FROM php:7.4-alpine
+FROM php:8.0-alpine
 
 MAINTAINER toph <toph@toph.fr>
 
-ENV COMPOSER_VERSION=1.10.8
+ENV COMPOSER_VERSION=1.10.19
 RUN export COMPOSER_HOME=/tmp/composer \
     && cd /usr/local/bin \
     && EXPECTED_SIGNATURE=$(curl -sSL https://composer.github.io/installer.sig) \
